@@ -10,6 +10,7 @@ import android.os.Parcelable;
 public class SliderItem implements Parcelable {
     private  String title;
     private  String url = null;
+    private  boolean centerCropped = false;
 
     public SliderItem(String title, String url) {
         this.title = title;
@@ -19,10 +20,21 @@ public class SliderItem implements Parcelable {
     public SliderItem(String title, int resID) {
         this.title = title;
         this.resID = resID;
+        this.centerCropped = centerCropped;
+    }
+
+    public SliderItem(String title, String url, boolean centerCropped) {
+        this.title = title;
+        this.url = url;
+    }
+
+    public SliderItem(String title, int resID,  boolean centerCropped) {
+        this.title = title;
+        this.resID = resID;
+        this.centerCropped = centerCropped;
     }
 
     protected SliderItem(Parcel in) {
-
 
         title = in.readString();
         url = in.readString();
@@ -66,6 +78,14 @@ public class SliderItem implements Parcelable {
     }
 
     private  int resID = 0;
+
+    public boolean isCenterCropped() {
+        return centerCropped;
+    }
+
+    public void setCenterCropped(boolean centerCropped) {
+        this.centerCropped = centerCropped;
+    }
 
     @Override
     public int describeContents() {

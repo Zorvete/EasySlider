@@ -21,10 +21,6 @@ import com.squareup.picasso.Picasso;
  * Created by Ahmed shaban on 5/11/2018.
  */
 
-
-
-
-
 /**
  * A placeholder fragment containing a simple view.
  */
@@ -47,10 +43,6 @@ public  class SliderFragment extends Fragment {
 
     int position = -1;
 
-
-
-
-
     public SliderFragment() {
     }
 
@@ -69,7 +61,6 @@ public  class SliderFragment extends Fragment {
         item = getArguments()
                 .getParcelable("item");
         position = getArguments().getInt("position");
-
     }
 
     @Override
@@ -88,15 +79,17 @@ public  class SliderFragment extends Fragment {
         }
 
         if(item.getResID()!=0){
-            Picasso.get()
-                    .load(item.getResID())
-                    .into(imageView);
+            if(item.isCenterCropped())
+                Picasso.get().load(item.getResID()).centerCrop().into(imageView);
+            else
+                Picasso.get().load(item.getResID()).into(imageView);
         }
 
         if(item.getUrl()!=null){
-            Picasso.get()
-                    .load(item.getUrl())
-                    .into(imageView);
+            if(item.isCenterCropped())
+                Picasso.get().load(item.getUrl()).centerCrop().into(imageView);
+            else
+                Picasso.get().load(item.getUrl()).into(imageView);
         }
 
         rootView.setOnClickListener(new View.OnClickListener() {
